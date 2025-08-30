@@ -1,4 +1,31 @@
-<!DOCTYPE html>
+<script>
+        // Mailchimp form handling
+        document.getElementById('mc-embedded-subscribe-form').addEventListener('submit', function(e) {
+            // The form will submit to Mailchimp in a new tab
+            // You can add additional validation here if needed
+            
+            // Optional: Show a message to the user
+            setTimeout(function() {
+                const input = document.querySelector('input[name="EMAIL"]');
+                input.value = '';
+                input.placeholder = 'Check your email for confirmation!';
+                
+                // Reset placeholder after 5 seconds
+                setTimeout(function() {
+                    input.placeholder = 'Enter your email';
+                }, 5000);
+            }, 1000);
+        });
+
+        // Add dynamic countdown (optional enhancement)
+        const launchDate = new Date('2025-10-01T00:00:00');
+        const updateCountdown = () => {
+            const now = new Date();
+            const diff = launchDate - now;
+            
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 *<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -364,21 +391,57 @@
                     <div class="feature-text">Secure & Reliable</div>
                 </div>
             </div>
-        
+            
+            <div class="notification">
+                <!-- Mailchimp Signup Form -->
+                <!-- Replace YOUR_FORM_ACTION_URL with your actual Mailchimp form action URL -->
+                <form class="email-input" 
+                      action="https://us1.list-manage.com/subscribe/post?u=5ec712c0655182c855379123324afe8b&amp;id=acb83a6db1" 
+                      method="post" 
+                      id="mc-embedded-subscribe-form" 
+                      name="mc-embedded-subscribe-form" 
+                      target="_blank"
+                      novalidate>
+                    <input type="email" 
+                           name="EMAIL" 
+                           placeholder="Enter your email" 
+                           required>
+                    <!-- Real people should not fill this in -->
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                        <input type="text" name="b_YOUR_USER_ID_YOUR_AUDIENCE_ID" tabindex="-1" value="">
+                    </div>
+                    <button type="submit" class="notify-btn" name="subscribe">Notify Me</button>
+                </form>
+            </div>
             
             <div class="footer">
                 <p>Welcome to come back! We're working hard to bring you something special.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+                    By subscribing, you agree to our 
+                    <a href="/privacy" style="color: rgba(255, 255, 255, 0.8); text-decoration: underline;">Privacy Policy</a>
+                </p>
             </div>
         </div>
     </div>
 
     <script>
-        function handleSubmit(event) {
-            event.preventDefault();
-            const email = event.target.querySelector('input').value;
-            alert(`Thank you! We'll notify ${email} when we launch.`);
-            event.target.reset();
-        }
+        // Mailchimp form handling
+        document.getElementById('mc-embedded-subscribe-form').addEventListener('submit', function(e) {
+            // The form will submit to Mailchimp in a new tab
+            // You can add additional validation here if needed
+            
+            // Optional: Show a message to the user
+            setTimeout(function() {
+                const input = document.querySelector('input[name="EMAIL"]');
+                input.value = '';
+                input.placeholder = 'Check your email for confirmation!';
+                
+                // Reset placeholder after 5 seconds
+                setTimeout(function() {
+                    input.placeholder = 'Enter your email';
+                }, 5000);
+            }, 1000);
+        });
 
         // Add dynamic countdown (optional enhancement)
         const launchDate = new Date('2025-10-01T00:00:00');
