@@ -1,31 +1,4 @@
-<script>
-        // Mailchimp form handling
-        document.getElementById('mc-embedded-subscribe-form').addEventListener('submit', function(e) {
-            // The form will submit to Mailchimp in a new tab
-            // You can add additional validation here if needed
-            
-            // Optional: Show a message to the user
-            setTimeout(function() {
-                const input = document.querySelector('input[name="EMAIL"]');
-                input.value = '';
-                input.placeholder = 'Check your email for confirmation!';
-                
-                // Reset placeholder after 5 seconds
-                setTimeout(function() {
-                    input.placeholder = 'Enter your email';
-                }, 5000);
-            }, 1000);
-        });
-
-        // Add dynamic countdown (optional enhancement)
-        const launchDate = new Date('2025-10-01T00:00:00');
-        const updateCountdown = () => {
-            const now = new Date();
-            const diff = launchDate - now;
-            
-            if (diff > 0) {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 *<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -193,6 +166,35 @@
             font-size: 1.1rem;
         }
 
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0 2rem;
+            animation: fadeIn 1s ease-out 0.8s both;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.8rem;
+            border-radius: 10px;
+            min-width: 60px;
+        }
+
+        .countdown-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .countdown-label {
+            display: block;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.2rem;
+        }
+
         .progress-container {
             margin: 2rem 0;
             animation: fadeIn 1s ease-out 0.9s both;
@@ -316,6 +318,21 @@
             animation: fadeIn 1s ease-out 1.5s both;
         }
 
+        .success-message {
+            display: none;
+            background: rgba(46, 204, 113, 0.2);
+            border: 1px solid rgba(46, 204, 113, 0.4);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
         @media (max-width: 600px) {
             h1 {
                 font-size: 2rem;
@@ -323,6 +340,19 @@
             
             .tagline {
                 font-size: 1rem;
+            }
+            
+            .countdown {
+                gap: 0.5rem;
+            }
+            
+            .countdown-item {
+                padding: 0.6rem;
+                min-width: 50px;
+            }
+            
+            .countdown-number {
+                font-size: 1.2rem;
             }
             
             .features {
@@ -369,6 +399,26 @@
             <div class="launch-date">
                 <span>🚀 Launch Date: October 1, 2025</span>
             </div>
+
+            <!-- Live Countdown -->
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">0</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">0</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">0</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">0</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
             
             <div class="progress-container">
                 <div class="progress-label">Development Progress</div>
@@ -394,24 +444,35 @@
             
             <div class="notification">
                 <!-- Mailchimp Signup Form -->
-                <!-- Replace YOUR_FORM_ACTION_URL with your actual Mailchimp form action URL -->
+                <!-- REPLACE: Update the action URL with your Mailchimp form action -->
                 <form class="email-input" 
-                      action="https://us1.list-manage.com/subscribe/post?u=5ec712c0655182c855379123324afe8b&amp;id=acb83a6db1" 
+                      action="https://us1.list-manage.com/subscribe/post?u=f8d2844f01b841d3b5f47e859&amp;id=acb83a6db1" 
                       method="post" 
                       id="mc-embedded-subscribe-form" 
                       name="mc-embedded-subscribe-form" 
                       target="_blank"
                       novalidate>
+                    
                     <input type="email" 
+                           value="" 
                            name="EMAIL" 
+                           class="required email" 
+                           id="mce-EMAIL"
                            placeholder="Enter your email" 
                            required>
-                    <!-- Real people should not fill this in -->
+                    
+                    <!-- Real people should not fill this in and expect good things -->
                     <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                        <input type="text" name="b_YOUR_USER_ID_YOUR_AUDIENCE_ID" tabindex="-1" value="">
+                        <input type="text" name="b_f8d2844f01b841d3b5f47e859_acb83a6db1" tabindex="-1" value="">
                     </div>
-                    <button type="submit" class="notify-btn" name="subscribe">Notify Me</button>
+                    
+                    <input type="submit" value="Notify Me" name="subscribe" id="mc-embedded-subscribe" class="notify-btn">
                 </form>
+                
+                <!-- Success Message -->
+                <div class="success-message" id="success-message">
+                    ✅ Thank you! We'll notify you when we launch.
+                </div>
             </div>
             
             <div class="footer">
@@ -427,37 +488,97 @@
     <script>
         // Mailchimp form handling
         document.getElementById('mc-embedded-subscribe-form').addEventListener('submit', function(e) {
-            // The form will submit to Mailchimp in a new tab
-            // You can add additional validation here if needed
+            // Don't prevent default - let Mailchimp handle the submission
             
-            // Optional: Show a message to the user
+            // Show user feedback while form submits
             setTimeout(function() {
-                const input = document.querySelector('input[name="EMAIL"]');
-                input.value = '';
-                input.placeholder = 'Check your email for confirmation!';
+                const emailInput = document.getElementById('mce-EMAIL');
+                const successMessage = document.getElementById('success-message');
+                
+                // Clear the input and show success message
+                emailInput.value = '';
+                emailInput.placeholder = 'Check your email for confirmation!';
+                successMessage.classList.add('show');
                 
                 // Reset placeholder after 5 seconds
                 setTimeout(function() {
-                    input.placeholder = 'Enter your email';
+                    emailInput.placeholder = 'Enter your email';
+                    successMessage.classList.remove('show');
                 }, 5000);
             }, 1000);
         });
 
-        // Add dynamic countdown (optional enhancement)
+        // Live countdown to launch date
         const launchDate = new Date('2025-10-01T00:00:00');
-        const updateCountdown = () => {
+        
+        function updateCountdown() {
             const now = new Date();
             const diff = launchDate - now;
             
             if (diff > 0) {
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
                 
-                // You can update the launch date text here if desired
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            } else {
+                // Launch date has passed
+                document.getElementById('countdown').innerHTML = 
+                    '<div style="color: #2ecc71; font-size: 1.2rem; font-weight: bold;">🎉 We\'re Live!</div>';
             }
-        };
+        }
         
+        // Update countdown immediately and then every second
+        updateCountdown();
         setInterval(updateCountdown, 1000);
+
+        // Optional: Add some interactive particle effects on click
+        document.body.addEventListener('click', function(e) {
+            createClickEffect(e.clientX, e.clientY);
+        });
+
+        function createClickEffect(x, y) {
+            const effect = document.createElement('div');
+            effect.style.position = 'absolute';
+            effect.style.left = x + 'px';
+            effect.style.top = y + 'px';
+            effect.style.width = '6px';
+            effect.style.height = '6px';
+            effect.style.background = 'rgba(255, 255, 255, 0.8)';
+            effect.style.borderRadius = '50%';
+            effect.style.pointerEvents = 'none';
+            effect.style.zIndex = '1000';
+            effect.style.animation = 'clickEffect 0.6s ease-out forwards';
+            
+            // Add keyframes for click effect
+            if (!document.getElementById('click-effect-style')) {
+                const style = document.createElement('style');
+                style.id = 'click-effect-style';
+                style.textContent = `
+                    @keyframes clickEffect {
+                        0% {
+                            transform: scale(1);
+                            opacity: 1;
+                        }
+                        100% {
+                            transform: scale(4);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            document.body.appendChild(effect);
+            
+            setTimeout(() => {
+                document.body.removeChild(effect);
+            }, 600);
+        }
     </script>
 </body>
 </html>
