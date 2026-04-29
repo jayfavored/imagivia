@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Imagivia | Technology & Education</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,13 +14,16 @@
 
         body {
             min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            /* Updated to use Inter */
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #2563eb 0%, #0f172a 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             position: relative;
+            color: white;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Animated background particles */
@@ -34,26 +38,16 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             animation: float 20s infinite linear;
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
         }
 
         .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 15s; }
@@ -76,60 +70,50 @@
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 3.5rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
             animation: slideUp 0.8s ease-out;
         }
 
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .logo-container {
-            width: 80px;
-            height: 80px;
+            width: 72px;
+            height: 72px;
             margin: 0 auto 2rem;
             background: linear-gradient(135deg, #60a5fa 0%, #1e3a8a 100%);
-            border-radius: 20px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: pulse 2s infinite;
+            animation: pulse 3s infinite;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
         }
 
         @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
-            }
+            0%, 100% { transform: scale(1); box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 8px 30px rgba(37, 99, 235, 0.5); }
         }
 
         .logo-text {
             color: white;
-            font-size: 2.5rem;
-            font-weight: bold;
+            font-size: 2.2rem;
+            font-weight: 700;
         }
 
         h1 {
-            color: white;
-            font-size: 2.5rem;
+            font-size: 2.75rem;
             margin-bottom: 1rem;
             font-weight: 700;
+            letter-spacing: -0.5px;
             animation: fadeIn 1s ease-out 0.3s both;
         }
 
@@ -139,80 +123,80 @@
         }
 
         .tagline {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.85);
             font-size: 1.15rem;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             line-height: 1.6;
+            font-weight: 300;
             animation: fadeIn 1s ease-out 0.5s both;
         }
 
         .launch-date {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.6rem 1.2rem;
             border-radius: 30px;
-            color: white;
             font-weight: 600;
             margin-bottom: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             animation: fadeIn 1s ease-out 0.7s both;
-        }
-
-        .launch-date span {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
         }
 
         .countdown {
             display: flex;
             justify-content: center;
             gap: 1rem;
-            margin: 1rem 0 2rem;
+            margin: 1rem 0 2.5rem;
             animation: fadeIn 1s ease-out 0.8s both;
         }
 
         .countdown-item {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 0.8rem;
-            border-radius: 10px;
-            min-width: 65px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 12px;
+            min-width: 75px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .countdown-number {
             display: block;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
+            font-size: 1.75rem;
+            font-weight: 700;
         }
 
         .countdown-label {
             display: block;
             font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-top: 0.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .progress-container {
-            margin: 2rem 0;
+            margin: 2.5rem 0;
             animation: fadeIn 1s ease-out 0.9s both;
         }
 
         .progress-label {
             color: rgba(255, 255, 255, 0.8);
             font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
         }
 
         .progress-bar {
             width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.2);
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #60a5fa 0%, #1e3a8a 100%);
+            background: linear-gradient(90deg, #60a5fa 0%, #3b82f6 100%);
             border-radius: 10px;
             width: 65%;
             animation: progressAnimation 2s ease-out 1s both;
@@ -238,99 +222,117 @@
         }
 
         .feature-icon {
-            width: 40px;
-            height: 40px;
-            margin: 0 auto 0.5rem;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            width: 44px;
+            height: 44px;
+            margin: 0 auto 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
         }
 
         .feature-text {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            font-weight: 500;
         }
 
         .notification {
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             animation: fadeIn 1s ease-out 1.3s both;
         }
 
         .email-input {
             display: flex;
             gap: 0.5rem;
-            max-width: 400px;
+            max-width: 420px;
             margin: 0 auto;
         }
 
         .email-input input {
             flex: 1;
-            padding: 0.8rem 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            padding: 0.9rem 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
             color: white;
             font-size: 1rem;
             outline: none;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
         }
 
         .email-input input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .email-input input:focus {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(0, 0, 0, 0.3);
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
         }
 
         .notify-btn {
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(135deg, #60a5fa 0%, #1e3a8a 100%);
+            padding: 0.9rem 1.8rem;
+            background: white;
+            color: #0f172a;
             border: none;
-            border-radius: 10px;
-            color: white;
+            border-radius: 12px;
             font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
         }
 
         .notify-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            background: #f8fafc;
         }
 
         .footer {
             margin-top: 3rem;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
             animation: fadeIn 1s ease-out 1.5s both;
+        }
+
+        .footer a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .footer a:hover {
+            color: white;
         }
 
         .success-message {
             display: none;
-            background: rgba(46, 204, 113, 0.2);
-            border: 1px solid rgba(46, 204, 113, 0.4);
-            color: white;
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #bbf7d0;
             padding: 1rem;
-            border-radius: 10px;
+            border-radius: 12px;
             margin-top: 1rem;
+            font-weight: 500;
         }
 
         .success-message.show {
             display: block;
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeIn 0.4s ease-out;
         }
 
         @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .tagline { font-size: 1rem; }
+            .glass-card { padding: 2.5rem 1.5rem; }
+            h1 { font-size: 2.2rem; }
+            .tagline { font-size: 1.05rem; }
             .countdown { gap: 0.5rem; }
-            .countdown-item { padding: 0.6rem; min-width: 50px; }
-            .countdown-number { font-size: 1.2rem; }
+            .countdown-item { padding: 0.8rem; min-width: 60px; }
+            .countdown-number { font-size: 1.4rem; }
             .features { gap: 1rem; }
             .email-input { flex-direction: column; }
             .notify-btn { width: 100%; }
@@ -339,15 +341,9 @@
 </head>
 <body>
     <div class="particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
         <div class="particle"></div>
     </div>
 
@@ -361,11 +357,11 @@
             
             <p class="tagline">
                 We are engineering the future of language learning.<br>
-                Imagivia and our professional teaching platform are launching soon!
+                Lingvia and our professional teaching platform are launching soon.
             </p>
             
             <div class="launch-date">
-                <span>🚀 Target Launch: October 1, 2026</span>
+                🚀 Target Launch: October 2026
             </div>
 
             <div class="countdown" id="countdown">
@@ -388,7 +384,7 @@
             </div>
             
             <div class="progress-container">
-                <div class="progress-label">Imagivia App Development Progress</div>
+                <div class="progress-label">Core System Architecture Progress</div>
                 <div class="progress-bar">
                     <div class="progress-fill"></div>
                 </div>
@@ -397,7 +393,7 @@
             <div class="features">
                 <div class="feature">
                     <div class="feature-icon">📱</div>
-                    <div class="feature-text">Imagivia iOS App</div>
+                    <div class="feature-text">Native iOS Apps</div>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">🌍</div>
@@ -405,17 +401,19 @@
                 </div>
                 <div class="feature">
                     <div class="feature-icon">⚡</div>
-                    <div class="feature-text">Effective Learning</div>
+                    <div class="feature-text">SwiftData Sync</div>
                 </div>
             </div>
             
             <div class="notification">
+                <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+                
                 <form class="email-input" 
                       action="https://us1.list-manage.com/subscribe/post?u=YOUR_MAILCHIMP_ID" 
                       method="post" 
                       id="mc-embedded-subscribe-form" 
                       name="mc-embedded-subscribe-form" 
-                      target="_blank"
+                      target="hidden_iframe"
                       novalidate>
                     
                     <input type="email" 
@@ -423,45 +421,57 @@
                            name="EMAIL" 
                            class="required email" 
                            id="mce-EMAIL"
-                           placeholder="Enter your email" 
+                           placeholder="Enter your email address" 
                            required>
                     
                     <div style="position: absolute; left: -5000px;" aria-hidden="true">
                         <input type="text" name="b_f8d2844f01b841d3b5f47e859_acb83a6db1" tabindex="-1" value="">
                     </div>
                     
-                    <input type="submit" value="Notify Me" name="subscribe" id="mc-embedded-subscribe" class="notify-btn">
+                    <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="notify-btn">
+                        Join Waitlist
+                    </button>
                 </form>
                 
                 <div class="success-message" id="success-message">
-                    ✅ Thank you! We'll notify you when we launch.
+                    ✓ Welcome to the list. We'll be in touch soon.
                 </div>
             </div>
             
             <div class="footer">
                 <p>&copy; 2026 Imagivia LLC. All rights reserved.</p>
-                <p style="margin-top: 0.5rem; font-size: 0.8rem; color: rgba(255, 255, 255, 0.5);">
-                    <a href="mailto:imagivia@gmail.com" style="color: rgba(255, 255, 255, 0.7); text-decoration: none;">Contact Developer</a>
+                <p style="margin-top: 0.5rem;">
+                    <a href="mailto:jianhua@imagivia.com">Contact Developer</a>
                 </p>
             </div>
         </div>
     </div>
 
     <script>
-        // Form handling (Visual feedback)
-        document.getElementById('mc-embedded-subscribe-form').addEventListener('submit', function(e) {
+        // Form handling with the hidden iframe
+        let form = document.getElementById('mc-embedded-subscribe-form');
+        form.addEventListener('submit', function() {
+            const emailInput = document.getElementById('mce-EMAIL');
+            const successMessage = document.getElementById('success-message');
+            const submitBtn = document.getElementById('mc-embedded-subscribe');
+            
+            // UI feedback while background submit happens
+            submitBtn.textContent = "Joining...";
+            submitBtn.style.opacity = "0.7";
+            
             setTimeout(function() {
-                const emailInput = document.getElementById('mce-EMAIL');
-                const successMessage = document.getElementById('success-message');
-                
+                // Reset form visually
                 emailInput.value = '';
-                emailInput.placeholder = 'Check your email for confirmation!';
+                submitBtn.textContent = "Join Waitlist";
+                submitBtn.style.opacity = "1";
+                
+                // Show success
                 successMessage.classList.add('show');
                 
+                // Hide success after a few seconds
                 setTimeout(function() {
-                    emailInput.placeholder = 'Enter your email';
                     successMessage.classList.remove('show');
-                }, 5000);
+                }, 6000);
             }, 1000);
         });
 
@@ -473,26 +483,23 @@
             const diff = launchDate - now;
             
             if (diff > 0) {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                
-                document.getElementById('days').textContent = days;
-                document.getElementById('hours').textContent = hours;
-                document.getElementById('minutes').textContent = minutes;
-                document.getElementById('seconds').textContent = seconds;
+                document.getElementById('days').textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById('hours').textContent = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('minutes').textContent = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('seconds').textContent = Math.floor((diff % (1000 * 60)) / 1000);
             } else {
                 document.getElementById('countdown').innerHTML = 
-                    '<div style="color: #60a5fa; font-size: 1.2rem; font-weight: bold;">🎉 Imagivia is Live!</div>';
+                    '<div style="color: #60a5fa; font-size: 1.4rem; font-weight: bold;">🎉 Lingvia is Live!</div>';
             }
         }
         
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // Click interaction effects
+        // Click interaction effects (kept intact)
         document.body.addEventListener('click', function(e) {
+            // Don't trigger click effect if clicking the form or button
+            if (e.target.closest('form')) return;
             createClickEffect(e.clientX, e.clientY);
         });
 
@@ -522,12 +529,8 @@
             }
             
             document.body.appendChild(effect);
-            
-            setTimeout(() => {
-                document.body.removeChild(effect);
-            }, 600);
+            setTimeout(() => { document.body.removeChild(effect); }, 600);
         }
     </script>
 </body>
 </html>
-
