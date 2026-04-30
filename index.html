@@ -14,13 +14,13 @@
 
         body {
             min-height: 100vh;
-            /* Updated to use Inter */
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #2563eb 0%, #0f172a 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            overflow-x: hidden; /* Changed to allow vertical scrolling */
+            padding: 2rem 0; /* Added padding to prevent content from hugging screen edges on scroll */
             position: relative;
             color: white;
             -webkit-font-smoothing: antialiased;
@@ -28,10 +28,13 @@
 
         /* Animated background particles */
         .particles {
-            position: absolute;
+            position: fixed; /* Changed to fixed so it follows the scroll */
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
+            z-index: 0; /* Added explicit z-index to stay behind content */
         }
 
         .particle {
@@ -305,7 +308,7 @@
             text-decoration: none;
             transition: color 0.2s;
         }
-        
+
         .footer a:hover {
             color: white;
         }
